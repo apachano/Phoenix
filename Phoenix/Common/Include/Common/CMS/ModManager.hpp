@@ -127,6 +127,12 @@ namespace phx::cms
 		sol::usertype<T> registerType(const std::string& name,
 		                              sol::constructors<Args...>);
 
+		/**
+		 * @brief Creates a table in the lua sandbox.
+		 * @return The created table.
+		 */
+		sol::table createTable() { return m_luaState.create_table(); };
+
 		// unimplemented function, exists as a reminder for when we need it.
 		template <typename T>
 		void exposeVariable(const std::string& name, T var);

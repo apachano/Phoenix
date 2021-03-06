@@ -96,7 +96,7 @@ math::Ray ActorSystem::getTarget(entt::registry* registry, entt::entity entity)
 	{
 		pos.floor();
 
-		if (map->getBlockAt(pos)->category == voxels::BlockCategory::SOLID)
+		if (map->getBlockAt(pos).type->category == voxels::BlockCategory::SOLID)
 		{
 			return ray;
 		}
@@ -122,7 +122,7 @@ bool ActorSystem::action1(voxels::BlockReferrer* blockReferrer,
 	{
 		pos.floor();
 
-		const auto* currentBlock = map->getBlockAt(pos);
+		const auto* currentBlock = map->getBlockAt(pos).type;
 		if (currentBlock->category == voxels::BlockCategory::SOLID)
 		{
 			if (item.type)
@@ -175,7 +175,7 @@ bool ActorSystem::action2(voxels::BlockReferrer* blockReferrer,
 	{
 		pos.floor();
 
-		const auto currentBlock = map->getBlockAt(pos);
+		const auto currentBlock = map->getBlockAt(pos).type;
 		if (currentBlock->category == voxels::BlockCategory::SOLID)
 		{
 			math::vec3 back = ray.backtrace(RAY_INCREMENT);

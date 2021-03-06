@@ -60,7 +60,7 @@ void HUD::tick(float dt)
 		auto target =
 		    ActorSystem::getTarget(m_registry, m_player).getCurrentPosition();
 		target.floor();
-		auto targetBlock = map->getBlockAt(target);
+		auto targetBlock = map->getBlockAt(target).type;
 		if (targetBlock->category == voxels::BlockCategory::SOLID)
 		{
 			ImGui::Text("%s", targetBlock->displayName.c_str());

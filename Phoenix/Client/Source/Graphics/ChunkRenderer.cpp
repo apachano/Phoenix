@@ -286,8 +286,9 @@ void ChunkRenderer::renderSelectionBox()
 	    ActorSystem::getTarget(m_registry, m_entity).getCurrentPosition();
 	pos.floor();
 	// do not waste cpu time if we aren't targeting a solid block
-	if (m_registry->get<PlayerView>(m_entity).map->getBlockAt(pos)->category !=
-	    voxels::BlockCategory::SOLID)
+	if (m_registry->get<PlayerView>(m_entity)
+	        .map->getBlockAt(pos)
+	        .type->category != voxels::BlockCategory::SOLID)
 	{
 		return;
 	}

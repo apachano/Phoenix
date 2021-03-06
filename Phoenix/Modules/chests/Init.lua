@@ -10,8 +10,8 @@ register_block_pair({
 })
 
 onbreak = function(_pos)
-    core.log_info("CalledBreak")
-    voxel.map.getBlock(_pos)
+    core.log("called")
+    voxel.map.setBlock(_pos, "core.dirt")
 end
 
 register_block_pair({
@@ -25,7 +25,8 @@ register_block_pair({
     rotH = true,
     onBreak = onbreak,
     onPlace = function(_pos)
+        local block = voxel.map.getBlock(_pos)
         core.log_info("CalledPlace")
-        voxel.map.getBlock(_pos)
+        core.log(block['id'])
     end,
 })

@@ -107,13 +107,34 @@ Game::Game(gfx::Window* window, entt::registry* registry, bool networked)
 	typeVec3["y"] = &math::vec3::y;
 	typeVec3["z"] = &math::vec3::z;
 
-	m_modManager->registerFunction("voxel.map.getBlock",
-	                               [this](math::vec3 pos) {
-		                               // TODO: We should prevent this from
-		                               // being called before the map is
-		                               // initialized
-		                               auto block = m_map->getBlockAt(pos);
-		                               return block->id;
+	m_modManager->registerFunction(
+	    "voxel.map.getBlock", [this](math::vec3 pos) {
+		    sol::table data = m_modManager->createTable();
+		    if (m_map != nullptr)
+		    {
+			    auto block = m_map->getBlockAt(pos);
+			    data["id"] = block.type->id;
+		    }
+		    return data;
+	    });
+	m_modManager->registerFunction(
+	    "voxel.map.setBlock", [this](math::vec3 pos, std::string block) {
+		    if (m_map == nullptr)
+		    {
+			    return;
+		    }
+		    m_map->setBlockAt(
+		        pos, {m_blockRegistry.referrer.getByID(block), nullptr});
+	    });
+	m_modManager->registerFunction("voxel.map.getMetadata",
+	                               [this](math::vec3 pos, std::string key) {
+		                               std::any value;
+		                               if (m_map != nullptr)
+		                               {
+			                               auto block = m_map->getBlockAt(pos);
+			                               value = block.metadata->get(key);
+		                               }
+		                               return value;
 	                               });
 }
 

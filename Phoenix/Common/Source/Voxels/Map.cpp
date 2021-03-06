@@ -130,16 +130,17 @@ std::pair<phx::math::vec3, phx::math::vec3> Map::getBlockPos(
 	return {chunkPosition, position};
 }
 
-BlockType* Map::getBlockAt(phx::math::vec3 position)
+Block Map::getBlockAt(phx::math::vec3 position)
 {
 	const auto& pos   = getBlockPos(position);
 	Chunk*      chunk = getChunk(pos.first);
 	if (chunk == nullptr)
 	{
-		return m_referrer->blocks.get(BlockType::OUT_OF_BOUNDS_BLOCK);
+		return {m_referrer->blocks.get(BlockType::OUT_OF_BOUNDS_BLOCK),
+		        nullptr};
 	}
 
-	return chunk->getBlockAt(pos.second).type;
+	return chunk->getBlockAt(pos.second);
 }
 
 void Map::setBlockAt(phx::math::vec3 position, const Block& block)
