@@ -9,11 +9,6 @@ register_block_pair({
     rotH = true,
 })
 
-onbreak = function(_pos)
-    core.log_info("called")
-    voxel.map.setBlock(_pos, "core.dirt")
-end
-
 register_block_pair({
     name = "Iron Chest",
     id = "chests.iron", --Jack Co. Supply Crate ;3
@@ -23,10 +18,12 @@ register_block_pair({
     },
     image = "Assets/chest_iron_front.png",
     rotH = true,
-    onBreak = onbreak,
     onPlace = function(_pos)
         local block = voxel.map.getBlock(_pos)
         core.log_info("CalledPlace")
         core.log_info(block['id'])
+    end,
+    onBreak = function(_pos)
+        core.log_info("CalledBreak")
     end,
 })

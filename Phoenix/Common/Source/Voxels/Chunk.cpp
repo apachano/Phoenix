@@ -67,6 +67,7 @@ void Chunk::setBlockAt(const phx::math::vec3& position, Block newBlock)
 		Block oldBlock = getBlockAt(position);
 		if (oldBlock.type->onBreak)
 		{
+			LOG_DEBUG("Chunk.cpp") << "Here";
 			oldBlock.type->onBreak(position);
 		}
 		m_blocks[getVectorIndex(position)] = newBlock.type;
