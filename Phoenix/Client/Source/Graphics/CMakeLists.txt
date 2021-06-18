@@ -16,6 +16,7 @@ set(Sources
 	${currentDir}/TexturePacker.cpp
 	${currentDir}/ChunkMesher.cpp
 	${currentDir}/ChunkRenderer.cpp
+	${currentDir}/EntityRenderer.cpp
 	${currentDir}/SelectionBoxRenderer.cpp
 	${currentDir}/SkyboxRenderer.cpp
 

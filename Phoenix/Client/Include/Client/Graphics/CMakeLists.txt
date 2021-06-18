@@ -19,8 +19,10 @@ set(Headers
 	${currentDir}/BlockModel.hpp
 	${currentDir}/BaseBlockModels.hpp
 	${currentDir}/TexturePacker.hpp
+
 	${currentDir}/ChunkMesher.hpp
 	${currentDir}/ChunkRenderer.hpp
+	${currentDir}/EntityRenderer.hpp
 	${currentDir}/SkyboxRenderer.hpp
 	${currentDir}/SelectionBoxRenderer.hpp
 
